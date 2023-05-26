@@ -1,0 +1,54 @@
+﻿<head>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
+@model OnlineTutorProject.Models.Teacher_Model
+
+@{
+    ViewBag.Title = "TeacherSignIn";
+}
+<body>
+    <h2 style="text-align: center; color: black; font-family: Georgia;font-weight:bold ">Teacher SignIn</h2>
+
+
+    <br />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <center>
+                <div>
+                    <label for="exampleInputEmail1" class="form-label " style="margin: 20px; margin-right: 210px">Teacher Id:</label>
+                    @Html.TextBoxFor(x => x.t_id, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.t_id, null, new { @class = "alert-danger" })
+
+                </div>
+
+                <div>
+                    <label for="exampleInputPassword1" class="form-label" style="margin:20px; margin-right:230px">Password:</label>
+                    @Html.PasswordFor(x => x.password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.password, null, new { @class = "alert-danger" })
+                </div>
+
+                <br />
+                <br />
+                <div class="form-group">
+                    <div>
+                        <input type="submit" value="LOGIN" class="btn button-31" style="width:270px; height:40px" />
+                    </div>
+                </div>
+            </center>
+            <div>
+
+                <span style="color:red">@Html.ActionLink("Teacher SignUp", "TeacherSignUp", "Teacher")</span>
+
+            </div>
+        </div>
+
+    }
+</body>
+
+
+

@@ -1,0 +1,57 @@
+﻿@model OnlineTutorProject.Models.Apply_Model
+
+@{
+    ViewBag.Title = "Check Request";
+}
+<body>
+    <br />
+    <br />
+    <h2 style="text-align: center; color: black; font-family: Georgia;font-weight:bold ">Check Request</h2>
+
+    @using (Html.BeginForm("CheckRequest", "Student", FormMethod.Post))
+    {
+        <br />
+            <table align="center">
+            <tr>
+                               <td style="padding:5px;">
+                    @Html.Label("Teacher ID")
+
+                    @Html.Editor("Teacher_ID", new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+                <td style="padding:5px;">
+                    @Html.Label("Subject")
+                    @Html.Editor("sub", new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+
+                <td style="margin:20px;">
+                    <b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</b>
+                    <input type="submit" value="Search" class="btn button-31" style="top:10px; position:relative; width:110px;" />
+                </td>
+            </tr>
+        </table>
+        <br>
+    }
+<div >
+    <h3 style="text-align: center; color: black; font-family: Georgia;font-weight:bold ">Your Status</h3>
+    <br>
+    <dl class="dl-horizontal">
+        </dd>
+        <dt style="padding:5px;">
+            @Html.Label("Tuition Type")
+        </dt>
+        <dd style="padding:5px;">
+            @Html.DisplayFor(model => model.tutor_address)
+        </dd>
+        <dt style="padding:5px;">
+            @Html.DisplayNameFor(model => model.approval_status)
+        </dt>
+        <dd style="padding:5px;">
+            @ViewBag.approval_status
+        </dd>
+
+    </dl>
+</div>
+
+    <br>
+    <br>
+</body>

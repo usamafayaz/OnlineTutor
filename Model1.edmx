@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="apply">
+          <Key>
+            <PropertyRef Name="apply_id" />
+          </Key>
+          <Property Name="apply_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="std_id" Type="int" />
+          <Property Name="tid" Type="int" />
+          <Property Name="slot" Type="varchar(max)" />
+          <Property Name="aproval_status" Type="int" />
+          <Property Name="tutor_address" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="dr">
+          <Key>
+            <PropertyRef Name="std_id" />
+          </Key>
+          <Property Name="std_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fname" Type="varchar(max)" />
+          <Property Name="lname" Type="varchar(max)" />
+          <Property Name="gender" Type="varchar" MaxLength="10" />
+          <Property Name="phone_no" Type="varchar(max)" />
+          <Property Name="password" Type="varchar(max)" />
+          <Property Name="classlevel" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tutor">
+          <Key>
+            <PropertyRef Name="tid" />
+          </Key>
+          <Property Name="tid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fname" Type="varchar(max)" />
+          <Property Name="lname" Type="varchar(max)" />
+          <Property Name="gender" Type="varchar" MaxLength="10" />
+          <Property Name="phone_no" Type="varchar(max)" />
+          <Property Name="city" Type="varchar(max)" />
+          <Property Name="password" Type="varchar(max)" />
+          <Property Name="subject" Type="varchar(max)" />
+          <Property Name="class_t" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK__apply__std_id__286302EC">
+          <End Role="dr" Type="Self.dr" Multiplicity="0..1" />
+          <End Role="apply" Type="Self.apply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dr">
+              <PropertyRef Name="std_id" />
+            </Principal>
+            <Dependent Role="apply">
+              <PropertyRef Name="std_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__apply__tid__29572725">
+          <End Role="tutor" Type="Self.tutor" Multiplicity="0..1" />
+          <End Role="apply" Type="Self.apply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tutor">
+              <PropertyRef Name="tid" />
+            </Principal>
+            <Dependent Role="apply">
+              <PropertyRef Name="tid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="apply" EntityType="Self.apply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dr" EntityType="Self.dr" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tutor" EntityType="Self.tutor" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__apply__std_id__286302EC" Association="Self.FK__apply__std_id__286302EC">
+            <End Role="dr" EntitySet="dr" />
+            <End Role="apply" EntitySet="apply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__apply__tid__29572725" Association="Self.FK__apply__tid__29572725">
+            <End Role="tutor" EntitySet="tutor" />
+            <End Role="apply" EntitySet="apply" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="apply">
+          <Key>
+            <PropertyRef Name="apply_id" />
+          </Key>
+          <Property Name="apply_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="std_id" Type="Int32" />
+          <Property Name="tid" Type="Int32" />
+          <Property Name="slot" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="aproval_status" Type="Int32" />
+          <Property Name="tutor_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="dr" Relationship="Self.FK__apply__std_id__286302EC" FromRole="apply" ToRole="dr" />
+          <NavigationProperty Name="tutor" Relationship="Self.FK__apply__tid__29572725" FromRole="apply" ToRole="tutor" />
+        </EntityType>
+        <EntityType Name="dr">
+          <Key>
+            <PropertyRef Name="std_id" />
+          </Key>
+          <Property Name="std_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="lname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="phone_no" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="classlevel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="applies" Relationship="Self.FK__apply__std_id__286302EC" FromRole="dr" ToRole="apply" />
+        </EntityType>
+        <EntityType Name="tutor">
+          <Key>
+            <PropertyRef Name="tid" />
+          </Key>
+          <Property Name="tid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="lname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="phone_no" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="class_t" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="applies" Relationship="Self.FK__apply__tid__29572725" FromRole="tutor" ToRole="apply" />
+        </EntityType>
+        <Association Name="FK__apply__std_id__286302EC">
+          <End Role="dr" Type="Self.dr" Multiplicity="0..1" />
+          <End Role="apply" Type="Self.apply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dr">
+              <PropertyRef Name="std_id" />
+            </Principal>
+            <Dependent Role="apply">
+              <PropertyRef Name="std_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__apply__tid__29572725">
+          <End Role="tutor" Type="Self.tutor" Multiplicity="0..1" />
+          <End Role="apply" Type="Self.apply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tutor">
+              <PropertyRef Name="tid" />
+            </Principal>
+            <Dependent Role="apply">
+              <PropertyRef Name="tid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Online_TutorEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="applies" EntityType="Self.apply" />
+          <EntitySet Name="drs" EntityType="Self.dr" />
+          <EntitySet Name="tutors" EntityType="Self.tutor" />
+          <AssociationSet Name="FK__apply__std_id__286302EC" Association="Self.FK__apply__std_id__286302EC">
+            <End Role="dr" EntitySet="drs" />
+            <End Role="apply" EntitySet="applies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__apply__tid__29572725" Association="Self.FK__apply__tid__29572725">
+            <End Role="tutor" EntitySet="tutors" />
+            <End Role="apply" EntitySet="applies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Online_TutorEntities">
+          <EntitySetMapping Name="applies">
+            <EntityTypeMapping TypeName="Model.apply">
+              <MappingFragment StoreEntitySet="apply">
+                <ScalarProperty Name="apply_id" ColumnName="apply_id" />
+                <ScalarProperty Name="std_id" ColumnName="std_id" />
+                <ScalarProperty Name="tid" ColumnName="tid" />
+                <ScalarProperty Name="slot" ColumnName="slot" />
+                <ScalarProperty Name="aproval_status" ColumnName="aproval_status" />
+                <ScalarProperty Name="tutor_address" ColumnName="tutor_address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="drs">
+            <EntityTypeMapping TypeName="Model.dr">
+              <MappingFragment StoreEntitySet="dr">
+                <ScalarProperty Name="std_id" ColumnName="std_id" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="phone_no" ColumnName="phone_no" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="classlevel" ColumnName="classlevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tutors">
+            <EntityTypeMapping TypeName="Model.tutor">
+              <MappingFragment StoreEntitySet="tutor">
+                <ScalarProperty Name="tid" ColumnName="tid" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="phone_no" ColumnName="phone_no" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="class_t" ColumnName="class_t" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

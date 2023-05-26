@@ -1,0 +1,53 @@
+﻿@model IEnumerable<OnlineTutorProject.Models.Student_Model>
+
+@{
+    ViewBag.Title = "StudentRequest";
+}
+<h2 style="text-align: center; color: black; font-family: Georgia;font-weight:bold ">Student Request</h2>
+<br />
+<br />
+
+<table class="table">
+    <tr>
+
+        <th style="color:black">
+            @Html.DisplayNameFor(model => model.f_name)
+        </th>
+        <th style="color:black">
+            @Html.DisplayNameFor(model => model.l_name)
+        </th>
+        <th style="color:black">
+            @Html.DisplayNameFor(model => model.gender)
+        </th>
+        <th style="color:black">
+            @Html.DisplayNameFor(model => model.phone_no)
+        </th>
+        <th></th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.f_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.l_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phone_no)
+                </td>
+                <td>
+                    <input class="btn button-31" type="button" value="Accept" onclick="location.href='@Url.Action("AcceptRequest", "Teacher", new { std_id = item.std_id }, null)'" name="btn" class="btn" />
+
+                </td>
+            </tr>
+        }
+    }
+
+</table>

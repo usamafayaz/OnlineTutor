@@ -1,0 +1,109 @@
+﻿
+
+@model IEnumerable<OnlineTutorProject.Models.Teacher_Model>
+<head>
+    <link href="~/Content/style.css" rel="stylesheet" />
+</head>
+
+<h2 style="text-align: center; color: black; font-family: Georgia;font-weight:bold ">Student Request Teacher</h2>
+
+
+@{
+    if (Session["error"] != null)
+    {
+
+        <br>
+        <br>
+        <hr>
+        <b style=" border-color:red;margin:0px auto;text-align:center; display:block;color:red;">@Session["error"].ToString()</b>
+        <hr>
+
+        Session["error"] = null;
+    }
+
+}
+@using (Html.BeginForm("StudentRequestTeacher", "Student", FormMethod.Post))
+{
+    <br>
+    <br>
+    <div style="text-align:center;">
+        @Html.Label("City")
+        @Html.Editor("City")
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        @Html.Label("Subject")
+        @Html.Editor("Subject")
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        @Html.Label("Class")
+        @Html.Editor("Classlevel")
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
+        <input type="submit" value="Search" class="btn button-31" >
+    </div>
+    <br>
+    <br>
+}
+
+<input class="btn button-31" type="button" value="Check Request Status" onclick="location.href='@Url.Action("CheckRequest", "Student")'" name="btn" />
+<br>
+<br>
+<table class="table" align="center" >
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.f_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.l_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.city)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.class_t)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subject)
+        </th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.f_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.l_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phone_no)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.city)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.class_t)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.password)
+                </td>
+
+                <td>
+                    <input class="btn button-31" type="button" value="Send Request" onclick="location.href='@Url.Action("SendRequest", "Student", new { t_id = item.t_id }, null)'" name="btn"/>
+                </td>
+            </tr>
+        }
+    }
+</table>

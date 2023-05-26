@@ -1,0 +1,38 @@
+﻿@model OnlineTutorProject.Models.Apply_Model
+
+@{
+    ViewBag.Title = "AcceptRequest";
+}
+
+<h2 style="text-align: center; color: black; font-family: Georgia;font-weight:bold ">Accept Request</h2>
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <br />
+        <br />
+        <br />
+        <center>
+            <div>
+                <label for="exampleInputEmail1" class="form-label " style="margin: 20px; margin-right: 230px">Adress:</label>
+                @Html.TextBoxFor(x => x.tutor_address, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.tutor_address, null, new { @class = "alert-danger" })
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <div>
+                    <input type="submit" value="Save" class="btn button-31" />
+                </div>
+            </div>
+        </center>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "StudentRequest")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

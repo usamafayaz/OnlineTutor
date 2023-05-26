@@ -1,0 +1,100 @@
+﻿<head>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
+@model OnlineTutorProject.Models.Teacher_Model
+
+@{
+    ViewBag.Title = "TeacherSignUp";
+}
+
+<h2 style="text-align: center; color: black; font-family: Georgia;font-weight:bold ">Teacher SignUp</h2>
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <br />
+        <center>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div>
+                    @Html.LabelFor(model => model.t_id)
+                    @Html.EditorFor(model => model.t_id, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.t_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.f_name)
+                <div>
+                    @Html.EditorFor(model => model.f_name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.f_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.l_name)
+                <div>
+                    @Html.EditorFor(model => model.l_name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.l_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.gender)
+                <div>
+                    @Html.EditorFor(model => model.gender, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.phone_no)
+                <div>
+                    @Html.EditorFor(model => model.phone_no, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.phone_no, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.city)
+                <div>
+                    @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.class_t)
+                <div>
+                    @Html.EditorFor(model => model.class_t, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.class_t, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.subject)
+                <div>
+                    @Html.EditorFor(model => model.subject, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.subject, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.password)
+                <div>
+                    @Html.PasswordFor(model => model.password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <input type="submit" value="Create" class="btn button-31" />
+                </div>
+            </div>
+        </center>
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "TeacherSignIn")
+</div>

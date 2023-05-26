@@ -1,0 +1,47 @@
+﻿@model OnlineTutorProject.Models.Student_Model
+<head>
+    <link href="~/Content/style.css" rel="stylesheet" />
+</head>
+@{
+    ViewBag.Title = "StudentSignIn";
+}
+
+<h2 style="text-align: center; color: black; font-family: Georgia;font-weight:bold ">Student SignIn</h2>
+<br />
+@using (Html.BeginForm())
+{
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <center>
+        <div >
+            <label for="exampleInputEmail1" class="form-label" style="margin: 20px; margin-right: 210px; font-size:17px">Student Id:</label>
+            @Html.TextBoxFor(x => x.std_id, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.std_id, null, new { @class = "alert-danger" })
+        </div>
+        <div>
+            <label for="exampleInputPassword1" class="form-label" style="margin: 20px; margin-right: 210px; font-size:17px">Password:</label>
+            @Html.PasswordFor(x => x.password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.password, null, new { @class = "alert-danger" })
+        </div>
+        <br />
+        <br />
+        <div class="form-group">
+            <div>
+                <input type="submit" value="LOGIN" class="btn button-31"/>
+            </div>
+        </div>
+    </center>
+
+    <div>
+        @Html.ActionLink("Student SignUp", "StudentSignUp", "Student")
+    </div>
+</div>
+  
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
